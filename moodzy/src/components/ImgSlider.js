@@ -76,11 +76,11 @@ margin-top: 20px;
   }
 
   .slick-prev {
-    left: -55px;
+    left: -75px;
   }
 
   .slick-next {
-    right: -55px;
+    right: -75px;
   }
 `;
 

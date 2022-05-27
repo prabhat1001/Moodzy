@@ -56,7 +56,7 @@ const Header = (props)=>{
     return(
     <Nav>
       <Logo>
-        <img src="/images/mOOdzy.png" alt="Disney+" />
+        <img src="/images/logo.svg" alt="Disney+" />
       </Logo>       
 
       {
@@ -216,6 +216,7 @@ const Login = styled.div`
     border: 1px solid #f9f9f9;
     border-radius: 4px;
     transition: all 0.2s ease 0s;
+
     &:hover {
         background-color: #f9f9f9;
         color: #000;

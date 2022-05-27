@@ -1,27 +1,28 @@
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { selectNewDisney, } from '../features/movie/movieSlice';
+import { selectRecommend, } from '../features/movie/movieSlice';
 
-const NewDisney = (props) =>{
+const Recommends = (props) =>{
 
-  const movies= useSelector(selectNewDisney);
+    const movies= useSelector(selectRecommend);
+
     return(
-      <Container>
-      <h4>New to Disney+</h4>
-      <Content>
-        {
-          movies && movies.map((movie,key) => (
-              <Wrap key={key}>
-                {movie.id}
-                <Link to={'/detail/' + movie.id}>
-                  <img src={movie.cardImg} alt={movie.title} />
-                </Link>
-              </Wrap>
-          ))
-        }
-      </Content>
-      </Container>
+        <Container>
+            <h4>Recommended for You</h4>
+            <Content>
+              {
+                movies && movies.map((movie,key) => (
+                    <Wrap key={key}>
+                      {movie.id}
+                      <Link to={'/detail/' + movie.id}>
+                        <img src={movie.cardImg} alt={movie.title} />
+                      </Link>
+                    </Wrap>
+                ))
+              }
+            </Content>
+        </Container>
     );
 };
 
@@ -71,4 +72,4 @@ const Wrap = styled.div`
   }
 `;
 
-export default NewDisney;
+export default Recommends;
