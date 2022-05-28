@@ -21,6 +21,7 @@ const ImgSlider = (props) =>{
                   <img src="/images/slider-badging.jpg" alt="" />
                 </a>
               </Wrap>
+             
         
               <Wrap>
                 <a>
