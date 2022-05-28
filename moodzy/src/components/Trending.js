@@ -1,15 +1,68 @@
-import styled from 'styled-components';
+import styled from "styled-components";
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import Slider from 'react-slick';
 import {Link} from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { selectTrending, } from '../features/movie/movieSlice';
+import { useSelector } from "react-redux";
+import { selectTrending } from "../features/movie/movieSlice";
+import { useState, useEffect } from "react";
+
 
 const Trending = (props) =>{
+
+  const initialNumSlides = () => {
+    if (window.innerWidth < 768) {
+        return 2;
+    } else if (window.innerWidth < 1080) {
+        return 3;
+    } else if (window.innerWidth < 1440) {
+        return 4;
+    } else {
+        return 5;
+    }
+}
+
+const [numSlides, setNumSlides] = useState(initialNumSlides);
+
+useEffect(() => {
+    if (window.innerWidth < 768) {
+        setNumSlides(2)
+    } else if (window.innerWidth < 1080) {
+        setNumSlides(3)
+    } else if (window.innerWidth < 1440) {
+        setNumSlides(4)
+    } else {
+        setNumSlides(5)
+    }
+}, [numSlides]);
+
+window.addEventListener("resize", function () {
+    if (window.innerWidth < 768) {
+        setNumSlides(2)
+    } else if (window.innerWidth < 1080) {
+        setNumSlides(3)
+    } else if (window.innerWidth < 1440) {
+        setNumSlides(4)
+    } else {
+        setNumSlides(5)
+    }
+});
+
+let settings = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: numSlides,
+    slidesToScroll: numSlides,
+    autoplay: false,
+};
+
 
     const movies= useSelector(selectTrending);
     return(
       <Container>
       <h4>Trending</h4>
-      <Content>
+      <Carousel {...settings}>
         {
           movies && movies.map((movie,key) => (
               <Wrap key={key}>
@@ -19,8 +72,9 @@ const Trending = (props) =>{
                 </Link>
               </Wrap>
           ))
+          
         }
-      </Content>
+      </Carousel>
       </Container>
     );
 };
@@ -29,17 +83,77 @@ const Trending = (props) =>{
 const Container = styled.div`
   padding: 0 0 26px;
   text-align: left;
+  margin-bottom: 150px;
 `;
 
-const Content = styled.div`
-  display: grid;
-  grid-gap: 10px;
-  gap: 20px;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  @media (max-width: 768px) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-`;
+
+const Carousel = styled(Slider)`
+    & > button {
+        opacity: 0;
+        height: 100%;
+        width: 5vw;
+        z-index: 1;
+        &:hover {
+            opacity: 1;
+            transition: opacity 0.2s ease 0s;
+        }
+    }
+    ul li button {
+        &:before {
+            font-size: 10px;
+            opacity: 1;
+            color: rgb(150, 158, 171);
+            @media (max-width: 768px) {
+                display: none;
+            }
+        }
+    }
+    li.slick-active button:before {
+        color: white;
+        @media (max-width: 768px) {
+            display: none;
+        }
+    }
+    .slick-list {
+        overflow: initial;
+        
+    }
+    .slick-prev {
+        left: -5%;
+    }
+    .slick-next {
+        right: -5%;
+    }
+    .slick-dots {
+        bottom: 20px;
+        display: block;
+        margin: 0px;
+        padding: 0px;
+        position: absolute;
+        right: 25px;
+        text-align: right;
+        pointer-events: none;
+        width: 100%;
+    }
+    .slick-dots li {
+        margin: 0;
+    }
+
+
+    .slick-slider {
+      width: 100%;
+    }
+    .slick-slide div {
+      margin-right: 20px;
+      /* margin-left: 10px; */
+    }
+
+    .slick-slide img {
+      width: 100%;
+    }
+
+`
+
 
 const Wrap = styled.div`
   padding-top: 56.25%;
@@ -59,7 +173,7 @@ const Wrap = styled.div`
     opacity: 1;
     position: absolute;
     transition: opacity 500ms ease-in-out 0s;
-    width: 100%;
+    width: 105%;
     z-index: 1;
     top: 0;
   }
