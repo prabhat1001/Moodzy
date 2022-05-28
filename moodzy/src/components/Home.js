@@ -11,6 +11,7 @@ import db from '../firebase';
 import { setMovies } from '../features/movie/movieSlice';
 import { selectUserName } from '../features/user/userSlice';
 import { collection, doc, onSnapshot } from 'firebase/firestore';
+import Footer from './Footer';
 
 const Home = (props) =>{
 
@@ -52,6 +53,7 @@ const Home = (props) =>{
 }, [userName]);
 
     return(
+        <>
         <Container>
             <ImgSlider/>
             <Viewers/>
@@ -60,7 +62,8 @@ const Home = (props) =>{
             <Originals/>
             <Trending/>
         </Container>
-        
+        <Footer/>
+        </>
     );
 };
 
