@@ -1,27 +1,38 @@
 import styled from 'styled-components';
+import { Link } from "react-router-dom";
 
 const Viewers = (props) =>{
     return(
         <Container>
         <Wrap>
-          <img src="/images/viewers-disney.png" alt="" />
-          <video src="/videos/1564674844-disney.mp4" type="video/mp4" autoPlay={true} loop={true} playsInline={true}></video>
+          <Link to="/disney">
+            <img src="/images/viewers-disney.png" alt="" />
+            <video src="/videos/1564674844-disney.mp4" type="video/mp4" autoPlay={true} loop={true} playsInline={true}/>
+          </Link>
         </Wrap>
         <Wrap>
+        <Link to="/pixar">
           <img src="/images/viewers-pixar.png" alt="" />
-          <video src="/videos/1564676714-pixar.mp4" type="video/mp4" autoPlay={true} loop={true} playsInline={true}></video>
+          <video src="/videos/1564676714-pixar.mp4" type="video/mp4" autoPlay={true} loop={true} playsInline={true}/>
+        </Link>
         </Wrap>
         <Wrap>
-          <img src="/images/viewers-marvel.png" alt="" />
-          <video src="/videos/1564676115-marvel.mp4" type="video/mp4" autoPlay={true} loop={true} playsInline={true}></video>
+          <Link to="/marvel">
+            <img src="/images/viewers-marvel.png" alt="" />
+            <video src="/videos/1564676115-marvel.mp4" type="video/mp4" autoPlay={true} loop={true} playsInline={true}></video>
+          </Link>
         </Wrap>
         <Wrap>
+        <Link to="/star-war">
           <img src="/images/viewers-starwars.png" alt="" />
-          <video src="/videos/1608229455-star-wars.mp4" type="video/mp4" autoPlay={true} loop={true} playsInline={true}></video>
+          <video src="/videos/1608229455-star-wars.mp4" type="video/mp4" autoPlay={true} loop={true} playsInline={true}/>
+        </Link>
         </Wrap>
         <Wrap>
+        <Link to="/national-geographic">
           <img src="/images/viewers-national.png" alt="" />
-          <video src="/videos/1564676296-national-geographic.mp4"type="video/mp4" autoPlay={true} loop={true} playsInline={true}></video>
+          <video src="/videos/1564676296-national-geographic.mp4"type="video/mp4" autoPlay={true} loop={true} playsInline={true}/>
+        </Link>
         </Wrap>
       </Container>
     );
