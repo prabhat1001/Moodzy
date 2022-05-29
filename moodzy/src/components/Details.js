@@ -8,12 +8,15 @@ import { collection, doc, getDoc } from 'firebase/firestore';
 const Detail = (props) => {
     const {id} = useParams();
     const [detailData, setDetailData] = useState({});
+    const [detailUrl, setDetailUrl] = useState();
 
     useEffect(() => {
         getDoc(doc(collection(db,'movies'),id))
             .then((doc) => {
                 if (doc.exists) {
                     setDetailData(doc.data());
+                    localStorage.setItem('url', doc.data().trailer);
+                    setDetailUrl(doc.data().trailer);
                 } else {
                     console.log('no such document');
                 }
@@ -23,29 +26,35 @@ const Detail = (props) => {
             });
     }, [id]);
 
+    console.log(detailUrl);
+
+
+
+    const url = "https://youtu.be/xOsLIiBStEs";
+
     return (
     <Container>
+
         <Background>
             <img src={detailData.backgroundImg} alt={detailData.title} />
         </Background>
+
         <ImageTitle>
             <img src={detailData.titleImg} alt={detailData.title} />
         </ImageTitle>
+
         <ContentMeta>
-            <SubTitle>
-                {detailData.subTitle}
-            </SubTitle>
+            <SubTitle>{detailData.subTitle}</SubTitle>
+
             <Controls>
             <Player>
-                
                 <img src="/images/play-icon-black.png" alt="" />
-                <span>Play</span>
-               
+                <span>Play</span>             
             </Player>
             <Trailer>
-              <Link to={'/player/'}>
+              <Link to={`/player`}>
                 <div>
-                  <img src="/images/play-icon-white.png" alt="" />
+                  {/* <img src="/images/play-icon-white.png" alt="" /> */}
                   <span>Trailer</span>
                 </div>
               </Link>
@@ -62,9 +71,7 @@ const Detail = (props) => {
                 </Link>
             </GroupWatch>
             </Controls>
-            <Description>
-                 {detailData.description}
-            </Description>
+            <Description>{detailData.description}</Description>
       </ContentMeta>
     </Container>
     
@@ -117,8 +124,6 @@ const ImageTitle = styled.div`
         width: 35vw;
     }
 `
-
-// ==========================
 
 const ContentMeta = styled.div`
   max-width: 874px;

@@ -6,7 +6,7 @@ const Footer = () => {
         <Container>
             <Content>
                 <LogoWrap>
-                    <Logo src="/images/logo.svg" alt=""/>
+                    <Logo src="/images/Moodzy-logo-2.png" alt=""/>
                 </LogoWrap>
                     <FooterLinks>
                         <Button>Privacy Policy</Button>
@@ -17,7 +17,7 @@ const Footer = () => {
                         <Button>About Us</Button>
                         <Button>Interest-based Ads</Button>
                     </FooterLinks>
-                    <Copyright>© Disney. All rights reserved.</Copyright>
+                    <Copyright>© Moodzy. All rights reserved.</Copyright>
             </Content>
         </Container>
     )
@@ -35,7 +35,7 @@ const Content = styled.div`
 
 const LogoWrap = styled.div`
     padding-top: 20px;
-    width: 64px;
+    width: 100px;
     margin: 0px auto;
     box-sizing: border-box;
     display: block;

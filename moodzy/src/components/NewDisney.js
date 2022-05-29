@@ -60,7 +60,7 @@ let settings = {
   const movies= useSelector(selectNewDisney);
     return(
       <Container>
-      <h4>New to Disney+</h4>
+      <h4>New to Moodzy</h4>
       <Carousel {...settings}>
         {
           movies && movies.map((movie,key) => (
