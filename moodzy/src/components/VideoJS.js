@@ -10,8 +10,8 @@ const VideoJS = (props) => {
         <Container>
         <Player>
             <ReactPlayer 
-                width={1370} 
-                height={580} 
+                width="100%"
+                height="90vh" 
                 playing={true}
                 controls url={Url}
 
@@ -30,19 +30,23 @@ const VideoJS = (props) => {
 const Container = styled.div`
     position: relative;
     min-height: calc(100vh - 70px);
+    /* min-width: 100vw; */
     overflow-x: hidden;
     overflow-y: hidden;
     display: block;
+    background-color: #000;
     top: 70px;
     /* height: 79.3; */
 `;
 
 const Player = styled.div`
-/* position: absolute; */
+    position: absolute;
+    object-fit: fill;
     display: flex;
     align-items: center;
     margin-left: auto;
     margin-right: auto;
+    min-width: 100%;
 
 `;
 
